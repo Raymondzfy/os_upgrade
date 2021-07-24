@@ -1,6 +1,6 @@
 ---
 - name: Upgrade CentOS
-  hosts: all
+  hosts: "{{type_of_server|default('*')}}"
   become: yes
   become_user: root
 
