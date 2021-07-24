@@ -1,0 +1,8 @@
+---
+- name: Upgrade CentOS
+  hosts: all
+  become: yes
+  become_user: root
+
+  role:
+    - CentOS_Upgrade

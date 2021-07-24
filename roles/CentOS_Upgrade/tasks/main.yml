@@ -1,0 +1,12 @@
+---
+- name: Clean up /var
+  shell: yum clean all
+
+- name: Run yum-complete-transaction -y
+  shell: yum-complete-transaction -y
+
+- name: Upgrade all packages on CentOS7
+  yum:
+    name: '*'
+    state: latest
+  register: update_status
