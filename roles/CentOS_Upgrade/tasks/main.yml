@@ -10,3 +10,20 @@
     name: '*'
     state: latest
   register: update_status
+
+- name: Reboot the server if upgraded successful.
+  reboot:
+    reboot_timeout: 60
+    boot_time_command: uptime | cut -d ' ' -f 5
+  when: update_status|success
+
+# - name: Send email to admin if upgraded failed.
+#   mail:
+#     host: smtp.gmail.com
+#     port: 587
+#     username: username@gmail.com
+#     password: "{{gmail_password}}"
+#     to: raymondzfy2858@gmail.com
+#     subject: OS upgrade failed.
+#     body: System {{ inventory_hostname }} uograde failed.
+#   delegate_to: localhost
