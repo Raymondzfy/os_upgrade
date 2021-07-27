@@ -1,0 +1,7 @@
+---
+- name: Add user to servers
+  user:
+    name: "{{ test_username }}"
+    comment: "demo user"
+    uid: 100000
+    password: "{{ test_password }}"
