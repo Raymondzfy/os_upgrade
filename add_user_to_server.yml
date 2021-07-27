@@ -1,0 +1,8 @@
+---
+- name: Add user to servers
+  hosts: all
+  become: yes
+  become_user: root
+
+  roles:
+    - add_users
