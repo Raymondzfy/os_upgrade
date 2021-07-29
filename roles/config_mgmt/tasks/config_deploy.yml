@@ -1,0 +1,30 @@
+---
+- name: Remove packages if packages_removed defined in standard_configs.yml for config file {{config_file.dest}}
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ config_file.packages_removed }}"
+  when: config_file.packages_removed is defined
+
+- name: Install packages if packages_installed defined in standard_configs.yml for config file {{config_file.dest}}
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ config_file.packages_installed }}"
+  when: config_file.packages_installed is defined
+
+- name: Deploy {{ config_file.dest }} from Version control system
+  template:
+    src: "{{local_tmp}}/{{ config_file.dest }}"
+    dest: "{{ config_file.dest }}"
+    owner: "{{ config_file.owner }}"
+    group: "{{ config_file.group }}"
+    mode: "{{ config_file.permission }}"
+  notify: Restart {{ config_file.service }}
+
+- name: Start {{ config_file.service }}
+  service:
+    name: "{{ config_file.service }}"
+    state: started
+    enabled: yes
+    

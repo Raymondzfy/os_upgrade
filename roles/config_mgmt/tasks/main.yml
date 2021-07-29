@@ -1,0 +1,21 @@
+---
+- name: Create tmp folder to standard configs
+  file:
+    path: "{{ local_tmp }}"
+    state: directory
+
+- name: Check out standard configs from github to {{ local_tmp }}
+  git:
+    repo: "{{standand_config_repo}}"
+    dest: "{{ local_tmp }}"
+    accept_hostkey: true
+    force: yes
+  changed_when: false
+
+- name: Import standard_config.yml file 
+  include_vars: "{{ local_tmp }}/standard_configs.yml"
+
+- include_tasks: config_deploy.yml
+  loop: "{{ standard_config_files|dict2items }}"
+  loop_control:
+    loop_var: config_file 
