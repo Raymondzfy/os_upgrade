@@ -6,27 +6,27 @@
   delegate_to: localhost
   run_once: yes
 
-- name: Install git on ansible server
-  yum:
-    name: git 
-    state: installed
-  delegate_to: localhost
-  run_once: yes
+# - name: Install git on ansible server
+#   yum:
+#     name: git 
+#     state: installed
+#   delegate_to: localhost
+#   run_once: yes
 
-- name: Check out standard configs from github to {{ local_tmp }}
-  git:
-    repo: "{{standand_config_repo}}"
-    dest: "{{ local_tmp }}"
-    accept_hostkey: true
-    force: yes
-  changed_when: false
-  delegate_to: localhost
-  run_once: yes
+# - name: Check out standard configs from github to {{ local_tmp }}
+#   git:
+#     repo: "{{standand_config_repo}}"
+#     dest: "{{ local_tmp }}"
+#     accept_hostkey: true
+#     force: yes
+#   changed_when: false
+#   delegate_to: localhost
+#   run_once: yes
 
-- name: Import standard_config.yml file 
-  include_vars: "{{ local_tmp }}/standard_configs.yml"
+# - name: Import standard_configs.yml file 
+#   include_vars: "{{ local_tmp }}/standard_configs.yml"
 
-- include_tasks: config_deploy.yml
-  loop: "{{ standard_config_files|dict2items }}"
-  loop_control:
-    loop_var: config_file 
+# - include_tasks: config_deploy.yml
+#   loop: "{{ standard_config_files|dict2items }}"
+#   loop_control:
+#     loop_var: config_file 
