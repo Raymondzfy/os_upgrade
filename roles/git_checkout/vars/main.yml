@@ -1,0 +1,4 @@
+---
+standand_config_repo: 'https://github.com/Raymondzfy/standard-config.git'
+version: 'main'
+local_tmp: /tmp/standand_config_repo
