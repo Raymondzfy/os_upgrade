@@ -14,7 +14,7 @@
   run_once: yes
 
 - name: Check out standard configs from github to {{ local_tmp }}
-  local_acthon:
+  local_action:
     module: git
     repo: "{{standand_config_repo}}"
     dest: "{{ local_tmp }}"
