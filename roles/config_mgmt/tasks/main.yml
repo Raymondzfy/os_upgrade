@@ -1,26 +1,26 @@
 ---
 - name: Create tmp folder to standard configs
-  local_action:
-    module: file
+  file:
     path: "{{ local_tmp }}"
     state: directory
+  delegate_to: localhost
   run_once: yes
 
 - name: Install git on ansible server
-  local_action:
-    module: yum
+  yum:
     name: git 
     state: installed
+  delegate_to: localhost
   run_once: yes
 
 - name: Check out standard configs from github to {{ local_tmp }}
-  local_action:
-    module: git
+  git:
     repo: "{{standand_config_repo}}"
     dest: "{{ local_tmp }}"
     accept_hostkey: true
     force: yes
   changed_when: false
+  delegate_to: localhost
   run_once: yes
 
 - name: Import standard_config.yml file 
