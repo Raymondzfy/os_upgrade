@@ -3,11 +3,13 @@
     module: file
     path: "{{ local_tmp }}"
     state: directory
+  run_once: true
 
 - name: Install git on ansible server
   yum:
     name: git 
     state: installed
+  run_once: true
 
 - name: Check out standard configs from github to {{ local_tmp }}
   git:
@@ -15,3 +17,4 @@
     dest: "{{ local_tmp }}"
     accept_hostkey: true
     force: yes
+  run_once: true
