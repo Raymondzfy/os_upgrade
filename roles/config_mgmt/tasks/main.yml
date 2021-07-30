@@ -1,6 +1,7 @@
 ---
 - name: Create tmp folder to standard configs
-  file:
+  local_action:
+    module: file
     path: "{{ local_tmp }}"
     state: directory
   # delegate_to: localhost
