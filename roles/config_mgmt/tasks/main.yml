@@ -4,14 +4,14 @@
     path: "{{ local_tmp }}"
     state: directory
   delegate_to: localhost
-  # run_once: yes
+  run_once: yes
 
 - name: Install git on ansible server
   yum:
     name: git 
     state: installed
   delegate_to: localhost
-  # run_once: yes
+  run_once: yes
 
 - name: Check out standard configs from github to {{ local_tmp }}
   git:
@@ -21,7 +21,7 @@
     force: yes
   changed_when: false
   delegate_to: localhost
-  # run_once: yes
+  run_once: yes
 
 - name: Import standard_config.yml file 
   include_vars: "{{ local_tmp }}/standard_configs.yml"
