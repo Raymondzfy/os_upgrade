@@ -7,10 +7,10 @@
   roles:
     - git_checkout
 
-- name: Configuration management on Unix servers
-  hosts: all
-  become: yes
-  become_user: root
+# - name: Configuration management on Unix servers
+#   hosts: all
+#   become: yes
+#   become_user: root
 
-  roles:
-    - config_mgmt
+#   roles:
+#     - config_mgmt
