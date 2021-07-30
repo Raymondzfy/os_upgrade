@@ -3,8 +3,8 @@
   file:
     path: "{{ local_tmp }}"
     state: directory
-  delegate_to: localhost
-  run_once: yes
+  # delegate_to: localhost
+  # run_once: yes
 
 # - name: Install git on ansible server
 #   yum:
