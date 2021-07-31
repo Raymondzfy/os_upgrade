@@ -1,31 +1,33 @@
 ---
-- debug: msg={{config_file}}
-# - name: Remove packages if packages_removed defined in standard_configs.yml for config file {{config_file.dest}}
-#   yum:
-#     name: "{{ item }}"
-#     state: absent
-#   with_items: "{{ config_file.packages_removed }}"
-#   when: config_file.packages_removed is defined
+- set_fact:
+    configs: "{{config_file.value}}"
 
-# - name: Install packages if packages_installed defined in standard_configs.yml for config file {{config_file.dest}}
-#   yum:
-#     name: "{{ item }}"
-#     state: latest
-#   with_items: "{{ config_file.packages_installed }}"
-#   when: config_file.packages_installed is defined
+- name: Remove packages if packages_removed defined in standard_configs.yml for config file {{configs.dest}}
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ configs.packages_removed }}"
+  when: configs.packages_removed is defined
 
-# - name: Deploy {{ config_file.dest }} from Version control system
-#   template:
-#     src: "{{local_tmp}}/{{ config_file.dest }}"
-#     dest: "{{ config_file.dest }}"
-#     owner: "{{ config_file.owner }}"
-#     group: "{{ config_file.group }}"
-#     mode: "{{ config_file.permission }}"
-#   notify: Restart {{ config_file.service }}
+- name: Install packages if packages_installed defined in standard_configs.yml for config file {{configs.dest}}
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ configs.packages_installed }}"
+  when: configs.packages_installed is defined
 
-# - name: Start {{ config_file.service }}
-#   service:
-#     name: "{{ config_file.service }}"
-#     state: started
-#     enabled: yes
+- name: Deploy {{ configs.dest }} from Version control system
+  template:
+    src: "{{local_tmp}}/{{ configs.dest }}"
+    dest: "{{ configs.dest }}"
+    owner: "{{ configs.owner }}"
+    group: "{{ configs.group }}"
+    mode: "{{ configs.permission }}"
+  notify: Restart {{ configs.service }}
+
+- name: Start {{ configs.service }}
+  service:
+    name: "{{ configs.service }}"
+    state: started
+    enabled: yes
     
