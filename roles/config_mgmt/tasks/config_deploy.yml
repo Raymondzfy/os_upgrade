@@ -31,5 +31,7 @@
     name: "{{ configs.service }}"
     state: restarted
     enabled: yes
-  when: config_file_change|changed
+  when: 
+    - config_file_change.changed
+    - configs.service is defined
     
