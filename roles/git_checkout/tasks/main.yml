@@ -18,3 +18,6 @@
     accept_hostkey: true
     force: yes
   run_once: true
+
+- name: List {{ local_tmp }}
+  shell: ls -l {{ local_tmp }}
