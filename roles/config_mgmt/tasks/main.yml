@@ -1,6 +1,6 @@
 ---
 - name: Import standard_configs.yml file 
-  include_vars: "{{ local_tmp }}/standard_configs.yml"
+  include_vars: "{{ local_tmp }}/templates/standard_configs.yml"
 
 - include_tasks: config_deploy.yml
   loop: "{{ standard_config_files|dict2items }}"
