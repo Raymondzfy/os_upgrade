@@ -23,11 +23,13 @@
     owner: "{{ configs.owner }}"
     group: "{{ configs.group }}"
     mode: "{{ configs.permission }}"
-  notify: Restart {{ configs.service }}
+  # notify: Restart {{ configs.service }}
+  register: config_file_change
 
-- name: Start {{ configs.service }}
+- name: Restart {{ configs.service }}
   service:
     name: "{{ configs.service }}"
-    state: started
+    state: restarted
     enabled: yes
+  when: config_file_change|changed
     
