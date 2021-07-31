@@ -18,7 +18,7 @@
 
 - name: Deploy {{ configs.dest }} from Version control system
   template:
-    src: "{{local_tmp}}{{ configs.dest }}"
+    src: "{{local_tmp}}{{ configs.src }}"
     dest: "{{ configs.dest }}"
     owner: "{{ configs.owner }}"
     group: "{{ configs.group }}"
