@@ -23,7 +23,6 @@
     owner: "{{ configs.owner }}"
     group: "{{ configs.group }}"
     mode: "{{ configs.permission }}"
-  # notify: Restart {{ configs.service }}
   register: config_file_change
 
 - name: Restart {{ configs.service }}
