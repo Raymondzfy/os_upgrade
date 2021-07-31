@@ -18,6 +18,7 @@
 
 - name: Deploy {{ configs.dest }} from Version control system
   template:
+    backup: "{{configs.backup|default('yes')}}"
     src: "{{local_tmp}}{{ configs.src }}"
     dest: "{{ configs.dest }}"
     owner: "{{ configs.owner }}"
