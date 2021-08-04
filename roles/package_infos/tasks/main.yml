@@ -1,0 +1,8 @@
+---
+- name: get all installed packages info
+  package_facts:
+    manager: "auto"
+  register: installed_packages
+
+- name: listed all packages info
+  debug: msg={{ installed_packages }}
