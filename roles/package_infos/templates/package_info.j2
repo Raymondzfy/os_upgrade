@@ -1,6 +1,6 @@
 Name,Release,Source,Version,epoch,Arch
 {% for package in ansible_facts.packages %}
 {% for package_details in package %}
-{{ inventory_hostname }},{{ package_details.name }},{{package_details.release}},{{package_details,source}},{{package_details.version}},{{package_details.epoch}},{{package_details.arch}}
+{{ inventory_hostname }},{{ package_details.value.name }},{{package_details.value.release}},{{package_details.value.source}},{{package_details.value.version}},{{package_details.value.epoch}},{{package_details.value.arch}}
 {% endfor %}
 {% endfor %}
