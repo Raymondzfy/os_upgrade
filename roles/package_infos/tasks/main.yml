@@ -7,10 +7,14 @@
 - name: listed all packages info
   debug: msg={{ current_installed_packages }}
 
-- name: add package infos into csv file
-  template:
-    src: package_info.j2
-    dest: /tmp/package_info.csv
+- name: deplay package info 
+  debug: msg={{ item.name}}
+  with_items: "{{ current_installed_packages.ansible_facts.packages.NetworkManager }}"
+
+# - name: add package infos into csv file
+#   template:
+#     src: package_info.j2
+#     dest: /tmp/package_info.csv
 
 # - name: updated packages 
 #   yum:
