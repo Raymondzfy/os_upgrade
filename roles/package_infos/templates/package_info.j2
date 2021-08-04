@@ -1,6 +1,4 @@
 Name,Release,Source,Version,epoch,Arch
 {% for package in current_installed_packages.ansible_facts.packages %}
-{% for package_details in package %}
-{{ package_details }}
-{% endfor %}
+{{ package }}
 {% endfor %}
