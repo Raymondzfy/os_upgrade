@@ -8,7 +8,7 @@
   debug: msg={{ current_installed_packages }}
 
 - name: deplay package info 
-  debug: msg={{ item.name}}
+  debug: msg="{{ item.name }},{{item.version}}"
   with_items: "{{ current_installed_packages.ansible_facts.packages.NetworkManager }}"
 
 # - name: add package infos into csv file
